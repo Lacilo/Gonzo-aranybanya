@@ -1,31 +1,37 @@
 body{
     background-color: aliceblue;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 nav{
-    border: 2px solid rgb(38, 140, 253);
-    border-radius: 5px;
-    display: inline-flex;
-    width: 99.8%;
-    background-color: rgb(38, 140, 253);
+    width: 99%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    background-color: #2E63AF;
     margin-right: 10px;
+    height: auto;
+    flex-wrap: wrap;
+    padding: 0px 20px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 #logo{
-    margin-left: 30px;
-    display: inline-flex;
+    display: flex;
     padding-left: 10px;
     padding-right: 15px;
+    padding-bottom: 0;
 }
 
 #logo-text{
     margin-left: 10px;
-    margin-top: 12.5%;
     font-size: xx-large;
     color: white;
     font-weight: bold;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     margin-right: 0;
+    padding-bottom: 0;
 }
 
 #logo:hover{
@@ -33,27 +39,50 @@ nav{
 }
 
 #linkek{
-    margin: 0;
-    height: 50px;
+    margin-right: 10px;
+    text-align: right;
     text-decoration: none;
-    padding-top: 1.7%;
+    display: flex;
+    height: auto;
+    flex-wrap: wrap
 }
 
 .link{
-    margin-left: 0px;
-    padding-top: 30%;
-    padding-bottom: 28%;
-    padding-left: 10%;
-    padding-right: 10%;
+    text-align: center;
+    padding: 20px 8px;
     text-decoration: none;
-    margin-left: 10px;
-    font-size: xx-large;
+    margin: 0;
+    font-size: large;
     color: white;
     font-weight: bold;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
+    white-space: nowrap;
 }
 
 .link:hover{
     background-color: rgba(0, 0, 0, 0.233);
+}
+
+@media screen and (max-width: 1000px) {
+    #logo{
+        text-align: center;
+        justify-content: center;
+
+    }
+
+    nav{
+        text-align: center;
+        justify-content: center;
+    }
+
+    #linkek {
+        justify-content: center;  
+        text-align: center;
+    }
+
+    .link{
+        margin-left: 0;
+        padding: 0;
+        margin: 10px;
+    }
 }

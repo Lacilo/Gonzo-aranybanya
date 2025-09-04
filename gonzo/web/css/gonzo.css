@@ -1,0 +1,126 @@
+#tortenet{
+    margin: 0;
+    display: flex;
+    margin-left: 18%;
+    margin-top: 70px;
+}
+
+#kep{
+    margin-top: 70px;
+}
+
+#szoveg{
+    color:aliceblue;
+    padding-right: 0px;
+    padding-left: 10px;
+    background-color: #2E63AF;
+    margin-top: 70px;
+    margin-left: 5px;
+    height: 800px;
+    margin-right: 340px;
+
+    h1{
+        margin-left: 20px;
+        margin-bottom: 10px;
+    }
+
+    p{
+        text-align: justify;
+        width: 90%;
+        margin-left: 20px;
+    }
+}
+
+@media screen and (max-width: 1750px) {
+    #tortenet{
+        margin-top: 20px;
+        display: flex;
+        margin-left: 18%;
+
+    }
+
+    #kep{
+        margin-top: 70px;
+    }
+
+    #szoveg{
+        color:aliceblue;
+        padding-right: 0px;
+        padding-left: 10px;
+        margin-top: 70px;
+        margin-left: 5px;
+        height: auto;
+        margin-right: 220px;
+
+        h1{
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        p{
+            text-align: justify;
+            width: 90%;
+            margin-left: 20px;
+        }
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    #tortenet{
+        margin-top: 20px;
+        display: block;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    #kep{
+        max-width: 100%;
+        height: auto;
+        margin-top: 0;
+    }
+
+    #szoveg{
+        width: 60%;
+        max-width: 525px;
+        color:aliceblue;
+        margin: 0 auto;
+        text-align: center;
+        padding-bottom: 10px;
+
+        h1{
+            margin-left: 0px;
+            margin-bottom: 10px;
+        }
+
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    #tortenet{
+        margin-top: 120px;
+        display: block;
+        margin-left: 0;
+        text-align: center;
+    }
+
+    #kep img{
+        max-width: 400px;
+        width: 100%;
+        height: auto;
+    }
+
+    #szoveg{
+        width: 90%;
+        max-width: 700px;
+        color:aliceblue;
+        margin: 0 auto;
+        text-align: center;
+        padding-bottom: 10px;
+
+        h1{
+            margin-left: 0px;
+            margin-bottom: 10px;
+        }
+
+    }
+}
