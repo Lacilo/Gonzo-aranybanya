@@ -1,0 +1,26 @@
+body{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+#fejleszto{
+    border-radius: 2px;
+    padding-top: 50px;
+    color: white;
+    margin-top: 75px;
+    background-color: #7aa3dd;
+    padding-bottom: 100px;
+    width: 70%;
+    border: 1px solid #2E63AF;
+}
+
+p{
+    font-size: larger;
+}
+
+iframe{
+    width: 100%;
+    min-width: 200px;
+    max-width: 800px;
+}
