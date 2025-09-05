@@ -88,3 +88,25 @@ nav{
         margin: 10px;
     }
 }
+
+footer{
+    display: flex;
+    color: whitesmoke;
+    background-color: #2E63AF;
+    position: fixed;
+    bottom:0;
+    width: 100%;
+    left: 0;
+    justify-content: space-between;
+    align-items: center;
+
+    p{
+        font-size: 0.7em;
+        margin: 0;
+        padding: 0;
+
+        margin-left: 10px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+}
