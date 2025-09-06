@@ -1,23 +1,27 @@
-def Info():
-    opciok = {
-        "help":"Ennek a menünek a megjelenítése",
-        "clear":"Képernyő letiszítása",
-        "editor":"",
-    }
-
-    for parancs in opciok:
-        print(f"{parancs} - {opciok[parancs]}")
-
+import os
+import modulok
 
 usr = input("Kérem adja meg a felhasználónevét --> ")
 
-global felulet
 felulet = "menü"
 
 while True:
-    parancs = (input(f"\n{usr} /{felulet}/-$ ")).capitalize() + "()"
+    parancsNyers = (input(f"\n{usr} /{felulet}/-$ ")).capitalize() + " _ _"
+    parancsP = parancsNyers.split(" ")
+
+    felulet = "menü"
 
     try:
-        eval(parancs)
+        if parancsP[0] != "":
+            os.system('cls')
+            felulet = eval("modulok." + parancsP[0] + f"('{parancsP[1]}', '{parancsP[2]}')")
+        else:
+            os.system('cls')
     except NameError:
-        print("Nem található ilyen parancs!")
+        print(f"Nem található ilyen parancs: {parancsP[0]}")
+
+    except AttributeError:
+        print(f"Nem található ilyen parancs: {parancsP[0]}")
+
+    except FileNotFoundError:
+        print(f"Hiba: Nem található {parancsP[1]} nevű fájl ezen az elérési úton: \n\n'gonzo/web/adatok/\n\nvagy valamely parancs paraméterként megadott útvonal helytelen")
