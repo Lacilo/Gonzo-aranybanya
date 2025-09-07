@@ -1,19 +1,25 @@
 import os
 
-def Info(a, b):
-    opciok = {
-        "help":"Ennek a menünek a megjelenítése",
-        "clear":"Képernyő letiszítása",
-        "editor":"",
-    }
+def KiIrasT(felulet):
+    szel = os.get_terminal_size().columns
 
-    for parancs in opciok:
-        print(f"{parancs} - {opciok[parancs]}")
+    os.system('cls')
+    title = f"QuickLift 1.0 - "
+    print((szel//2 - (len(title) + len(felulet)//2) + 5) * " ", title + felulet)
+    print(os.get_terminal_size().columns * "-" + "\n\n")
+
+def KiIrasA(csokk = 9):
+    mag = os.get_terminal_size().lines
+
+    print((mag - csokk) * "\n")
 
 def Create(fajlnev = "", datum = ""):
+    KiIrasT("létrehozás")
+
     if fajlnev == "_" and datum == "_":
 
         print("Az adatok beolvasásához, és az azokból való adattábla létrehozására\nhasználja a create parancsot.\n\nPontos használat:\n\ncreate [beolvasandó fájl].txt [dátum (formátum = 2025_09_06)]")
+        KiIrasA(15)
     else:
         tablaKod = """<!DOCTYPE html>
 <html lang="en">
@@ -57,35 +63,49 @@ def Create(fajlnev = "", datum = ""):
     return "létrehozás"
 
 def Delete(fajlnev, b):
+    KiIrasT("törlés")
     if fajlnev != "_" and b == "_":
         if fajlnev[-5:] != ".html":
             print(f"Hiba: úgy néz ki a megadott fájl nem html fájl, a törléshez adjon meg egy html fájlt")
+
+            KiIrasA(11)
         else:
             os.remove(f"../web/adatok/{fajlnev}")
     else:
         print("Egy adattáblázat törléséhez kérem adja meg a html fájl nevét (a dátumot) \nebben a formátumban: \n\ndelete [fájlnév].html pl.: delete 2025_09_06.html")
-        
+        KiIrasA(13)
+
     return "törlés"
 
 def List(a, b):
+    KiIrasT("listázás")
+
+    terkoz = 17
+
     print("■ html fájlok")
     egyebFajl = []
 
-    for fajl in os.listdir("../web/adatok/"):
+    for fajl in os.listdir("../web/adatok"):
         if fajl[-5:] == ".html":
             print("│")
             print("├─── " + fajl)
+
+            terkoz += 2
         else:
             egyebFajl.append(fajl)
     print("│")
     print("└──■")
 
-    print("\n\n■ Egyéb fájlok")
+    print("\n\n■ egyéb fájlok")
 
     for fajl in egyebFajl:
         print("│")
         print("├─── " + fajl)
+        
+        terkoz += 2
     print("│")
     print("└──■")
+
+    KiIrasA(terkoz)
 
     return "listázás"
