@@ -13,6 +13,45 @@ def KiIrasA(csokk = 9):
 
     print((mag - csokk) * "\n")
 
+def DatumFrissites():
+    foHtml = """<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adatok</title>
+    <link rel="stylesheet" href="./css/gonzo.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <script>
+    </script>
+
+    <nav>
+        <div id="logo"><a href="index.html"><img src="./img/logo1.png" height="60" alt=""></a></div>
+        <div id="linkek">
+            <a class="link" href="gonzo.html">Gonzo</a>
+            <a class="link" href="adatok.html">Adatok</a>
+            <a class="link" href="kapcsolat.html">Fejlesztők</a>
+        </div>
+    </nav>
+    <div id='datumok'>
+
+"""
+
+    for datum in os.listdir("../adatok/"):
+                if datum[-5:] == ".html":
+                    foHtml += f'\n<a href="../adatok/{datum}">{datum}</a><br>'
+
+    foHtml += """</div><footer>
+        <p>Az oldal kizárólag tanulmányi okokból készült</p>
+    </footer>
+</body>
+</html>"""
+    
+    with open("../web/adatok.html", "w", encoding="utf-8") as file:
+        file.write(foHtml)
+
 def Create(fajlnev = "", datum = ""):
     KiIrasT("létrehozás")
 
@@ -32,7 +71,7 @@ def Create(fajlnev = "", datum = ""):
     <table>   
         <tr>  <th>Gép típusa</th> <th>Állapot</th> <th>Időpont</th> <th>Kapitány</th> <th>Első tiszt/Másodpilóta</th> <th>Kifutó</th> <th>Úticél</th> <th>Indulási reptér</th>  </tr>""" # ITT MÉG CSAK ELINDULT A TÁBLÁZAT KÉSŐBB BE KELL ZÁRNI
 
-        with open("../web/adatok/" + fajlnev, "r", encoding="utf-8") as file:
+        with open("../" + fajlnev, "r", encoding="utf-8") as file:
             for sorNy in file:
                 sorH = sorNy.split(";")
                 tipus = sorH[0]
@@ -57,9 +96,15 @@ def Create(fajlnev = "", datum = ""):
 </html>
 """
 
-        with open("../web/adatok/" + datum + ".html", "w", encoding="utf-8") as file:
+        with open("../adatok/" + datum + ".html", "w", encoding="utf-8") as file:
             file.write(tablaKod)
-    
+
+        DatumFrissites()
+
+        print(f"Sikeresen létrehoztuk a {datum}.html fájlt!")
+
+        KiIrasA(10)
+
     return "létrehozás"
 
 def Delete(fajlnev, b):
@@ -69,40 +114,34 @@ def Delete(fajlnev, b):
             print(f"Hiba: úgy néz ki a megadott fájl nem html fájl, a törléshez adjon meg egy html fájlt")
 
             KiIrasA(11)
+
         else:
-            os.remove(f"../web/adatok/{fajlnev}")
+            os.remove(f"../adatok/{fajlnev}")
+            DatumFrissites()
+
+            print(f"A {fajlnev} fájlt sikeresen eltávolítottuk!")
+
+            KiIrasA(10)
+
     else:
         print("Egy adattáblázat törléséhez kérem adja meg a html fájl nevét (a dátumot) \nebben a formátumban: \n\ndelete [fájlnév].html pl.: delete 2025_09_06.html")
         KiIrasA(13)
-
+    
     return "törlés"
 
 def List(a, b):
     KiIrasT("listázás")
 
-    terkoz = 17
+    terkoz = 12
 
     print("■ html fájlok")
-    egyebFajl = []
 
-    for fajl in os.listdir("../web/adatok"):
+    for fajl in os.listdir("../adatok/"):
         if fajl[-5:] == ".html":
             print("│")
             print("├─── " + fajl)
 
             terkoz += 2
-        else:
-            egyebFajl.append(fajl)
-    print("│")
-    print("└──■")
-
-    print("\n\n■ egyéb fájlok")
-
-    for fajl in egyebFajl:
-        print("│")
-        print("├─── " + fajl)
-        
-        terkoz += 2
     print("│")
     print("└──■")
 

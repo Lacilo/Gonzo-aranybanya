@@ -29,4 +29,4 @@ while True:
 
     except FileNotFoundError as e:
         
-        print(f"Hiba: {e} Nem található {parancsP[1]} nevű fájl ezen az elérési úton: \n\n'gonzo/web/adatok/'\n\nvagy valamely parancs paraméterként megadott útvonal helytelen")
+        print(f"Hiba: {e} Nem található {parancsP[1]} nevű fájl ezen az elérési úton: \n\n'gonzo/python/adatok/'\n\nvagy valamely parancs paraméterként megadott útvonal helytelen")
