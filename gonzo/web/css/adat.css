@@ -1,0 +1,9 @@
+body{
+    margin-top: 65px;
+    display: flex;
+}
+
+table{
+    margin: 0 auto;
+    border-collapse: collapse;
+}

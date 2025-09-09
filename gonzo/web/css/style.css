@@ -116,7 +116,23 @@ input{
 }
 
 #datumok{
+    margin: 0 auto;
+    text-align: center;
     margin-top: 100px;
-    border: 10px solid;
     display: block;
+    width: 200px;
+    background-color: #2E63AF;
+    padding: 10px;
+    padding-top: 20px;
+
+    a{
+        display: block;
+        text-decoration: none;
+        color: white;
+        font-size: x-large;
+    }
+
+    a:hover{
+        color: rgb(221, 221, 221);
+    }
 }
