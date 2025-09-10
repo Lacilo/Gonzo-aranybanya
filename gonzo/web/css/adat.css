@@ -1,9 +1,11 @@
 body{
     margin-top: 65px;
-    display: flex;
 }
 
 table{
     margin: 0 auto;
-    border-collapse: collapse;
+}
+
+a{
+    text-shadow: 20px 20px 20px rgba(0,0,0,0.2);;
 }

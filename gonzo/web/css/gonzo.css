@@ -11,6 +11,7 @@
 }
 
 #szoveg{
+    box-shadow: 100px 100px 100px rgba(0,0,0,0.2);
     color:aliceblue;
     padding-right: 0px;
     padding-left: 10px;
@@ -45,6 +46,7 @@
     }
 
     #szoveg{
+        box-shadow: 100px 100px 100px rgba(0,0,0,0.2);
         color:aliceblue;
         padding-right: 0px;
         padding-left: 10px;
@@ -81,6 +83,7 @@
     }
 
     #szoveg{
+        box-shadow: 100px 100px 100px rgba(0,0,0,0.2);
         width: 60%;
         max-width: 525px;
         color:aliceblue;
@@ -111,6 +114,7 @@
     }
 
     #szoveg{
+        box-shadow: 100px 100px 100px rgba(0,0,0,0.2);
         width: 90%;
         max-width: 700px;
         color:aliceblue;

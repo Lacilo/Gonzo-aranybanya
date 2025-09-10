@@ -9,7 +9,7 @@ modulok.UserRead(usr)
 felulet = "menü"
 
 modulok.MenuKiiras()
-modulok.KiIrasA(22)
+modulok.KiIrasA(24)
 
 while True:
     parancsNyers = (input(f"\n{usr} /{felulet}/-$ ")).capitalize() + " _ _"
@@ -25,7 +25,7 @@ while True:
 
         else:
             modulok.MenuKiiras()
-            modulok.KiIrasA(22)
+            modulok.KiIrasA(24)
 
     except NameError:
         modulok.KiIrasT("menü")
@@ -39,5 +39,5 @@ while True:
 
     except FileNotFoundError as e:
         modulok.KiIrasT("menü")
-        print(f"Hiba: {e} Nem található {parancsP[1]} nevű fájl ezen az elérési úton: \n\n'gonzo/python/adatok/'\n\nvagy valamely parancs paraméterként megadott útvonal helytelen")
-        modulok.KiIrasA(14)
+        print(f"Hiba: {e} \n\nNem található {parancsP[1]} nevű fájl vagy valamely\nparancs paraméterként megadott fájlnév helytelen")
+        modulok.KiIrasA(13)

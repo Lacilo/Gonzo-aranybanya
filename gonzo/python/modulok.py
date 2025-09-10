@@ -45,7 +45,7 @@ def DatumFrissites():
 
     for datum in os.listdir("../adatok/"):
                 if datum[-5:] == ".html":
-                    foHtml += f'\n<a href="../adatok/{datum}">{datum}</a><br>'
+                    foHtml += f'\n\t<a href="../adatok/{datum}">{datum}</a><br>'
 
     foHtml += """</div><footer>
         <p>Az oldal kizárólag tanulmányi okokból készült</p>
@@ -56,26 +56,31 @@ def DatumFrissites():
     with open("../web/adatok.html", "w", encoding="utf-8") as file:
         file.write(foHtml)
 
-def Create(datum = "", fajlnev = ""):
-    KiIrasT("létrehozás")
-
-    if fajlnev == "_" and datum == "_":
-
-        print(f"Az adatok beolvasásához, és az azokból való adattábla létrehozására\nhasználja a create parancsot.\n\nPontos használat:\n\ncreate [fájlnév (a program megfelelő működéséhez mindenkéeppen\ndátumot adjon meg fájlnévnek) (formátum = 2025_09_06.html)] [beolvasandó fájl].txt \n\npl.: {usr} /létrehozás/-$ create 2025_05_06.html fajl.txt")
-        KiIrasA(18)
+def Create(datum = "", fajlnev = "", m = "c"):
+    if m == "c" and datum in os.listdir("../adatok/"):
+        KiIrasT("létrehozás")
+        print("Már létezik ilyen fájl! Szerkesztéshez kérem használja az edit parancsot. \nMost nem változott semmi.")
+        KiIrasA(11)
     else:
-        tablaKod = f"""<!DOCTYPE html>
+        KiIrasT("létrehozás")
+
+        if fajlnev == "_" and datum == "_":
+
+            print(f"Az adatok beolvasásához, és az azokból való adattábla létrehozására\nhasználja a create parancsot.\n\nPontos használat:\n\ncreate [fájlnév (a program megfelelő működéséhez mindenkéeppen\ndátumot adjon meg fájlnévnek) (formátum = 2025_09_06.html)] [beolvasandó fájl].txt \n\npl.: {usr} /létrehozás/-$ create 2025_05_06.html fajl.txt")
+            KiIrasA(18)
+        else:
+            tablaKod = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{datum}</title>
+    <title>{datum[:-5]}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href='../web/css/adat.css'>
     <link rel="stylesheet" href='../web/css/style.css'>
 </head>
 <body>
-    <nav>
+    <nav class="container-fluid">
         <div id="logo"><a href="../web/index.html"><img src="../web/img/logo1.png" height="60" alt=""></a></div>
         <div id="linkek">
             <a class="link" href="../web/gonzo.html">Gonzo</a>
@@ -86,40 +91,40 @@ def Create(datum = "", fajlnev = ""):
     <table class="table table-bordered table-striped text-center">   
         <tr class="table-primary">  <th>Gép típusa</th> <th>Állapot</th> <th>Időpont</th> <th>Kapitány</th> <th>Első tiszt/Másodpilóta</th> <th>Kifutó</th> <th>Úticél</th> <th>Indulási reptér</th>  </tr>""" # ITT MÉG CSAK ELINDULT A TÁBLÁZAT KÉSŐBB BE KELL ZÁRNI
 
-        with open("../" + fajlnev, "r", encoding="utf-8") as file:
-            for sorNy in file:
-                sorH = sorNy.split(";")
-                tipus = sorH[0]
-                allapot = sorH[1]
-                ido = sorH[2]
-                kapitany = sorH[3]
-                masodP = sorH[4]
-                kifuto = sorH[5]
-                
-                if allapot == "Érkezés":
-                    indR = sorH[6]
-                    uticel = "-"
-                else:
-                    uticel = sorH[6]
-                    indR = "-"
+            with open("../" + fajlnev, "r", encoding="utf-8") as file:
+                for sorNy in file:
+                    sorH = sorNy.split(";")
+                    tipus = sorH[0]
+                    allapot = sorH[1]
+                    ido = sorH[2]
+                    kapitany = sorH[3]
+                    masodP = sorH[4]
+                    kifuto = sorH[5]
+                    
+                    if allapot == "Érkezés":
+                        indR = sorH[6]
+                        uticel = "-"
+                    else:
+                        uticel = sorH[6]
+                        indR = "-"
 
-                tablaKod += f"\n\t\t<tr>  <th>{tipus}</th> <th>{allapot}</th> <th>{ido}</th> <th>{kapitany}</th> <th>{masodP}</th> <th>{kifuto}</th> <th>{uticel}</th> <th>{indR}</th>  </tr>"
+                    tablaKod += f"\n\t\t<tr>  <td>{tipus}</td> <td>{allapot}</td> <td>{ido}</td> <td>{kapitany}</td> <td>{masodP}</td> <td>{kifuto}</td> <td>{uticel}</td> <td>{indR}</td>  </tr>"
 
-        tablaKod += """
+            tablaKod += """
     </table>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 """
 
-        with open("../adatok/" + datum, "w", encoding="utf-8") as file:
-            file.write(tablaKod)
+            with open("../adatok/" + datum, "w", encoding="utf-8") as file:
+                file.write(tablaKod)
 
-        DatumFrissites()
+            DatumFrissites()
 
-        print(f"Sikeresen létrehoztuk a {datum}.html fájlt!")
+            print(f"Sikeresen létrehoztuk a {datum}.html fájlt!")
 
-        KiIrasA(10)
+            KiIrasA(10)
 
     return "létrehozás"
 
@@ -154,17 +159,12 @@ def List(a, b):
 
     mappa = os.listdir("../adatok/")
 
-    for fajl in mappa:
-        if fajl == "datumok.txt":
-            mappa.remove(fajl)
-            mappa.append(fajl)
-
-    if len(mappa) == 1:
+    if len(mappa) == 0:
         terkoz = 10
 
     for i, fajl in enumerate(mappa):
         if fajl[-5:] == ".html":
-            if i == len(mappa) -2:
+            if i == len(mappa) -1:
                 print("│")
                 print("└─── " + fajl)
             else:    
@@ -180,24 +180,35 @@ def List(a, b):
 def MenuKiiras():
     KiIrasT("menü")
 
-    print(f"Parancsok:\n\ncreate - fájlból adattáblázat létrehozása\nedit - már létrehozott adattáblázat szerkesztése(adatainak kicserélése)\ndelete - már létrehozott adattáblázat törlése\nlist - létrehozott adattáblázatok neveinek listázása/megjeleítése\nopen - Az adattáblázatokat megjelenítő weblap megnyitása\n\nA parancsok használatának részleteiért\n(amelyik parancsnál vannak részletek, a list-nél és az open-nél nincsenek)\nÍrja be a használni kívánt parancsot\n\npl.: {usr} /menü/-$ create")
+    print(f"Parancsok:\n\nexit - kilépés a programból\ncreate - fájlból adattáblázat létrehozása\nedit - már létrehozott adattáblázat szerkesztése(adatainak kicserélése)\ndelete - már létrehozott adattáblázat törlése\nlist - létrehozott adattáblázatok neveinek listázása/megjeleítése\nopen - Az adattáblázatokat megjelenítő weblap megnyitása\n       open parancs után fájlnév megadásával az adott nevű adattáblázat megnyitása\n\nA parancsok használatának további részleteiért\n(amelyik parancsnál vannak részletek, a list-nél nincs)\nÍrja be a használni kívánt parancsot\n\npl.: {usr} /menü/-$ create")
 
-def Open(a, b):
-    relUtv = "../web/adatok.html"
+def Open(fajl, b):
+    if fajl == "_":
+        relUtv = "../web/adatok.html"
 
-    absUtv = os.path.abspath(relUtv)
+        absUtv = os.path.abspath(relUtv)
 
-    webbrowser.open(f"file://{absUtv}")
+        webbrowser.open(f"file://{absUtv}")
 
-    KiIrasT("web")
-    print("Az adattáblákat tartalmazó weblapot sikeresen megnyitottuk")
-    KiIrasA(10)
+        KiIrasT("web")
+        print("Az adattáblákat tartalmazó weblapot sikeresen megnyitottuk!")
+        KiIrasA(10)
+    else:
+        relUtv = f"../adatok/{fajl}"
+
+        absUtv = os.path.abspath(relUtv)
+
+        webbrowser.open(f"file://{absUtv}")
+
+        KiIrasT("web")
+        print("Az adattáblát tartalmazó weblapot sikeresen megnyitottuk!")
+        KiIrasA(10)
 
     return "web"
 
 def Edit(datum, fajlnev):
     if datum != "_" and fajlnev != "_":
-        Create(datum, fajlnev)
+        Create(datum, fajlnev, "e")
         
         os.system('cls')
         KiIrasT("szerkesztés")
@@ -210,3 +221,6 @@ def Edit(datum, fajlnev):
         KiIrasA(13)
 
     return "szerkesztés"
+
+def Exit(a, b):
+    exit()
