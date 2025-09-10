@@ -1,2 +1,4 @@
-# Gonzo-aranybanya
-ikt-projektmunka feladat
+# Quicklift
+### Terminál alapú reptéri adatfeldolgozó szoftver repülőgépekhez
+
+FIGYELEM !!! EZ A PROGRAM CSAKIS TANULMÁNYI OKOKBÓL KÉSZÜLT EL !!! THIS PROGRAM WAS MADE ONLY FOR EDUCATIONAL PURPSES !!! EPILEPSZIA VESZÉLY FENN ÁLLHAT !!! EPILEPSY WARNING !!!
