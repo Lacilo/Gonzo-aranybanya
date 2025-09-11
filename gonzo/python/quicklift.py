@@ -3,10 +3,11 @@ import modulok
 
 os.chdir(os.path.dirname(__file__))
 
-usr = "vendég"
-
 usr = input("Kérem adja meg a felhasználónevét --> ")
 modulok.UserRead(usr)
+
+if usr == "":
+    usr = "vendég"
 
 felulet = "menü"
 
