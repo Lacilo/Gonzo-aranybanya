@@ -8,7 +8,7 @@ usr = input("Kérem adja meg a felhasználónevét --> ")
 if usr == "":
     usr = "vendég"
 
-dulok.UserRead(usr)
+modulok.UserRead(usr)
 
 felulet = "menü"
 
